@@ -1,0 +1,17 @@
+parameters:
+    qbitz_dpd.client.class: 'Qbitz\DpdBundle\Dpd\Client'
+    qbitz_dpd.wsdl:         ~
+    qbitz_dpd.login:        ~
+    qbitz_dpd.password:     ~
+    qbitz_dpd.fid:          ~
+    qbitz_dpd.output_dir:   ~
+
+services:
+    qbitz.dpd:
+        class: %qbitz_dpd.client.class%
+        arguments:
+            - '%qbitz_dpd.wsdl%'
+            - '%qbitz_dpd.login%'
+            - '%qbitz_dpd.password%'
+            - '%qbitz_dpd.fid%'
+            - '%qbitz_dpd.output_dir%'
