@@ -1,5 +1,5 @@
 {
-    "name": "qbitz/pdpbundle",
+    "name": "qbitz/dpdbundle",
     "description": "Symfony2 and PDP Polska integration",
     "keywords": ["pdp", "pdp polska", "pdp poland"],
     "homepage": "https://github.com/Qbitz/PdpBundle",
