@@ -1,6 +1,6 @@
 {
     "name": "qbitz/dpdbundle",
-    "description": "Symfony2 and PDP Polska integration",
+    "description": "Symfony2 and DPD Polska integration",
     "keywords": ["pdp", "pdp polska", "pdp poland"],
     "homepage": "https://github.com/Qbitz/PdpBundle",
     "type": "symfony-bundle",
