@@ -128,7 +128,7 @@ class BrowserTest extends WebTestCase {
 
         $this->assertEquals('OK', $resp->statusInfo->status);
 
-        $this->assertStringStartsWith(date('Yd'), $resp->orderNumber);
+        $this->assertStringStartsWith(date('Ymd'), $resp->orderNumber);
     }
 
 }
