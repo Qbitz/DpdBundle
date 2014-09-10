@@ -15,7 +15,8 @@ class Package {
     public $parcels;
 
     public function __construct($reference = null, $thirdPartyFID = null) {
-        $this->reference     = $reference;
+        $this->reference = $reference;
+        $this->ref1      = $reference;
 //        $this->thirdPartyFID = $thirdPartyFID;
     }
 

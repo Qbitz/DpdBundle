@@ -61,8 +61,8 @@ class BrowserTest extends WebTestCase {
 
     private function getSessionInfo() {
         $parcel   = Data\OpenUMLFe\Parcel::create(0.3);
-        $sender   = Data\OpenUMLFe\Address::create('Maszyna.pl', 'ul. Rzemieślnicza 1 p 213', 'Kraków', '30363', 'PL');
-        $receiver = Data\OpenUMLFe\Address::create('DPD Polska Sp. Z o.o.', 'ul. Płk. Dąbka 22 a', 'Kraków', '30732', 'PL', 1495);
+        $sender   = Data\OpenUMLFe\Address::create(null, 'Maszyna.pl', 'ul. Rzemieślnicza 1 p 213', 'Kraków', '30363', 'PL');
+        $receiver = Data\OpenUMLFe\Address::create(null, 'DPD Polska Sp. Z o.o.', 'ul. Płk. Dąbka 22 a', 'Kraków', '30732', 'PL', 1495);
         $pkg = Data\OpenUMLFe\Package::create('asdf12345'.rand())
                                      ->setSender($sender)
                                      ->setReceiver($receiver)
@@ -113,15 +113,22 @@ class BrowserTest extends WebTestCase {
 
         $this->getDocuments($sess);
 
+        $params = Data\PickupCallV3\DpdPickupCallParamsV3::createInsert('2014-09-10', '13:00', '16:00'); // 13 ; 14 ; 15 + 180
 
+        $det = new Data\PickupCallV3\PickupCallSimplifiedDetailsDPPV1();
+        $det->pickupPayer = Data\PickupCallV3\PickupPayerDPPV1::create(1495, 'Maszyna.pl', 'Maszyna.pl');
+        $det->pickupCustomer = Data\PickupCallV3\PickupCustomerDPPV1::create('Przemysław Nowakowski', 'Przemysław Nowakowski', '793795415');
+        $det->pickupSender = Data\PickupCallV3\PickupSenderDPPV1::create('Przemysław Nowakowski', 'Przemysław Nowakowski', 'ul. Rzemieślnicza 1 p 213', 'Kraków', '30363', '793795415');
+        $det->packagesParams = Data\PickupCallV3\PickupPackagesParamsDPPV1::createSingleDOX();
 
-        $params = new Data\PickupCallV3\DpdPickupCallParamsV3();
-
-
+        $params->pickupCallSimplifiedDetails = $det;
 
         $resp = $this->getDpdClient()->packagesPickupCall($params);
         $this->assertInstanceOf('\Qbitz\DpdBundle\Dpd\Data\PickupCallV3\PackagesPickupCallResponseV3', $resp);
 
+        $this->assertEquals('OK', $resp->statusInfo->status);
+
+        $this->assertStringStartsWith(date('Yd'), $resp->orderNumber);
     }
 
 }

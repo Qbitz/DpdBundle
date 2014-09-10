@@ -129,7 +129,7 @@ class Client {
                     'parcelDGRV1' => 'Qbitz\DpdBundle\Dpd\Data\Document\ParcelDGRV1',
                     'packagesPickupCallResponseV3' => 'Qbitz\DpdBundle\Dpd\Data\PickupCallV3\PackagesPickupCallResponseV3',
                     'statusInfoPCRV2' => 'Qbitz\DpdBundle\Dpd\Data\PickupCallV2\StatusInfoPCRV2',
-                    'errorDetailsPCRV2' => 'Qbitz\DpdBundle\Dpd\Data\PickupCallV2\ErrorDetailsPCRV2',
+                    'errorDetailsPCRV2' => 'Qbitz\DpdBundle\Dpd\Data\PickupCallV2\ErrorDetailsPCRV2'
                 )
             ));
         }

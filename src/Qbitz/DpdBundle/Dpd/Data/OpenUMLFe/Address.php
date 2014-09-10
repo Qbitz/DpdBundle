@@ -13,9 +13,10 @@ class Address {
     public $phone;
     public $email;
 
-    public static function create($company, $address, $city, $postalCode, $countryCode, $fid = null) {
+    public static function create($name, $company, $address, $city, $postalCode, $countryCode, $fid = null) {
         $ret = new Address();
 
+        $ret->name = $name;
         $ret->company = $company;
         $ret->address = $address;
         $ret->city = $city;
