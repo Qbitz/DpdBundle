@@ -113,7 +113,7 @@ class BrowserTest extends WebTestCase {
 
         $this->getDocuments($sess);
 
-        $params = Data\PickupCallV3\DpdPickupCallParamsV3::createInsert('2014-09-10', '13:00', '16:00'); // 13 ; 14 ; 15 + 180
+        $params = Data\PickupCallV3\DpdPickupCallParamsV3::createInsert('2015-01-01', '13:00', '16:00');
 
         $det = new Data\PickupCallV3\PickupCallSimplifiedDetailsDPPV1();
         $det->pickupPayer = Data\PickupCallV3\PickupPayerDPPV1::create(1495, 'Maszyna.pl', 'Maszyna.pl');
