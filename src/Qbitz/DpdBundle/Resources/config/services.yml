@@ -1,17 +1,28 @@
 parameters:
-    qbitz_dpd.client.class: 'Qbitz\DpdBundle\Dpd\Client'
-    qbitz_dpd.wsdl:         ~
-    qbitz_dpd.login:        ~
-    qbitz_dpd.password:     ~
-    qbitz_dpd.fid:          ~
-    qbitz_dpd.output_dir:   ~
+    qbitz_dpd.dpdservices.client.class: 'Qbitz\DpdBundle\Dpd\DpdServicesClient'
+    qbitz_dpd.appservices.client.class: 'Qbitz\DpdBundle\Dpd\AppServicesClient'
+    qbitz_dpd.dpdservices.wsdl:         ~
+    qbitz_dpd.appservices.wsdl:         ~
+    qbitz_dpd.login:                    ~
+    qbitz_dpd.password:                 ~
+    qbitz_dpd.fid:                      ~
+    qbitz_dpd.dpdservices.output_dir:   ~
 
 services:
-    qbitz.dpd:
-        class: %qbitz_dpd.client.class%
+    qbitz.dpd.dpdservices:
+        class: %qbitz_dpd.dpdservices.client.class%
         arguments:
-            - '%qbitz_dpd.wsdl%'
+            - @jms_serializer
+            - '%qbitz_dpd.dpdservices.wsdl%'
             - '%qbitz_dpd.login%'
             - '%qbitz_dpd.password%'
             - '%qbitz_dpd.fid%'
-            - '%qbitz_dpd.output_dir%'
+            - '%qbitz_dpd.dpdservices.output_dir%'
+    qbitz.dpd.appservices:
+        class: %qbitz_dpd.appservices.client.class%
+        arguments:
+            - @jms_serializer
+            - '%qbitz_dpd.appservices.wsdl%'
+            - '%qbitz_dpd.login%'
+            - '%qbitz_dpd.password%'
+            - '%qbitz_dpd.fid%'

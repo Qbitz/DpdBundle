@@ -6,12 +6,12 @@ use Symfony\Bundle\FrameworkBundle\Test\WebTestCase;
 
 use Qbitz\DpdBundle\Dpd\Data as Data;
 
-class BrowserTest extends WebTestCase {
+class DpdServicesClientTest extends WebTestCase {
 
     private function getDpdClient() {
         static $dpdClient = null;
         if(!$dpdClient) {
-            $dpdClient = static::createClient()->getContainer()->get('qbitz.dpd');
+            $dpdClient = static::createClient()->getContainer()->get('qbitz.dpd.dpdservices');
         }
         return $dpdClient;
     }
@@ -19,9 +19,9 @@ class BrowserTest extends WebTestCase {
     public function testConfigAndConnection() {
         $dpdClient = $this->getDpdClient();
 
-        $this->assertInstanceOf('\Qbitz\DpdBundle\Dpd\Client', $dpdClient);
+        $this->assertInstanceOf('\Qbitz\DpdBundle\Dpd\DpdServicesClient', $dpdClient);
 
-        $this->assertCount(12, $dpdClient->getFunctions());
+        $this->assertCount(13, $dpdClient->getFunctions());
     }
 
     public function testFindPostalCode() {
@@ -113,7 +113,7 @@ class BrowserTest extends WebTestCase {
 
         $this->getDocuments($sess);
 
-        $params = Data\PickupCallV3\DpdPickupCallParamsV3::createInsert('2015-01-01', '13:00', '16:00');
+        $params = Data\PickupCallV3\DpdPickupCallParamsV3::createInsert('2016-01-01', '13:00', '16:00');
 
         $det = new Data\PickupCallV3\PickupCallSimplifiedDetailsDPPV1();
         $det->pickupPayer = Data\PickupCallV3\PickupPayerDPPV1::create(1495, 'Maszyna.pl', 'Maszyna.pl');

@@ -2,7 +2,16 @@
 
 namespace Qbitz\DpdBundle\Dpd\Data;
 
+use JMS\Serializer\Annotation as Serial;
+
+/**
+ * @Serial\XmlRoot("Packages")
+ */
 class OpenUMLFeV1 {
+
+    /**
+     * @Serial\XmlList(inline = true, entry = "Package")
+     */
     public $packages;
 
     public static function create() {

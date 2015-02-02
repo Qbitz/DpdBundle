@@ -25,10 +25,11 @@ class QbitzDpdExtension extends Extension
         $loader = new Loader\YamlFileLoader($container, new FileLocator(__DIR__.'/../Resources/config'));
         $loader->load('services.yml');
 
-        $container->setParameter('qbitz_dpd.wsdl',       $config['wsdl']);
-        $container->setParameter('qbitz_dpd.login',      $config['login']);
-        $container->setParameter('qbitz_dpd.password',   $config['password']);
-        $container->setParameter('qbitz_dpd.fid',        $config['fid']);
-        $container->setParameter('qbitz_dpd.output_dir', $config['output_dir']);
+        $container->setParameter('qbitz_dpd.dpdservices.wsdl',       $config['dpdservices']['wsdl']);
+        $container->setParameter('qbitz_dpd.appservices.wsdl',       $config['appservices']['wsdl']);
+        $container->setParameter('qbitz_dpd.login',                  $config['login']);
+        $container->setParameter('qbitz_dpd.password',               $config['password']);
+        $container->setParameter('qbitz_dpd.fid',                    $config['fid']);
+        $container->setParameter('qbitz_dpd.dpdservices.output_dir', $config['dpdservices']['output_dir']);
     }
 }
