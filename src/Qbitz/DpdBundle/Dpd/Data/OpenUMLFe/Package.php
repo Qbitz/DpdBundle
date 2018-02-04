@@ -91,4 +91,14 @@ class Package {
 
         return $this;
     }
+
+    public function addServices(Service $service) {
+        if(!is_array($this->services)) {
+            $this->services = array();
+        }
+
+        array_push($this->services, $service);
+
+        return $this;
+    }
 }
