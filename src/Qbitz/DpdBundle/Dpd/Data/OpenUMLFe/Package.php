@@ -99,6 +99,8 @@ class Package {
 
         array_push($this->services, $service);
 
+        $this->services = $service;
+
         return $this;
     }
 }
