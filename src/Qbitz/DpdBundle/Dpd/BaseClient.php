@@ -25,6 +25,7 @@ abstract class BaseClient {
         if(!$connection) {
             $connection = new \SoapClient($this->wsdl, array(
                 'cache_wsdl' => WSDL_CACHE_NONE,
+                'trace' => true,
                 'classmap' => array(
                     'findPostalCodeResponseV1' => 'Qbitz\DpdBundle\Dpd\Data\PostalCode\FindPostalCodeResponseV1',
                     'getCourierOrderAvailabilityResponseV1' => 'Qbitz\DpdBundle\Dpd\Data\Courier\GetCourierOrderAvailabilityResponseV1',
@@ -67,6 +68,11 @@ abstract class BaseClient {
 
     public function getFunctions() {
         return $this->getConnection()->__getFunctions();
+    }
+
+    public function getLastRequest()
+    {
+        return $this->getConnection()->__getLastRequest();
     }
 
 
